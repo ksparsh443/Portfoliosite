@@ -1,0 +1,65 @@
+---
+import { AstroFont } from 'astro-font';
+
+interface Props {
+	title: string;
+	siteName: string;
+	siteDescription: string;
+}
+
+const { title, siteName, siteDescription } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<meta name="description" content={siteDescription} />
+		<meta property="og:site_name" content={siteName} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={siteDescription} />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<AstroFont
+		config={[
+						{
+								src: [],
+								name: "Sora",
+								preload: false,
+								display: "swap",
+								fallback: "sans-serif",
+								selector: ".font-sora",
+								googleFontsURL: 'https://fonts.googleapis.com/css2?family=Sora:wght@100..800',
+						},
+				]}
+		/>
+		<style>
+			.video-background {
+				position: fixed;
+				right: 0;
+				bottom: 0;
+				min-width: 100%;
+				min-height: 100%;
+				z-index: -1;
+				object-fit: cover;
+			}
+			.content {
+				position: relative;
+				z-index: 1;
+			}
+		</style>
+	</head>
+	<body>
+		<video autoplay muted loop class="video-background">
+			<source src="/public/assets/svg/backgrounds/horizon-animated.mp4" type="video/mp4">
+		</video>
+		<div class="content">
+			<div class="grid min-h-dvh grid-cols-1 place-content-center place-items-center gap-5">
+				<slot />
+			</div>
+		</div>
+	</body>
+</html>

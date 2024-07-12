@@ -1,0 +1,47 @@
+---
+/**
+ * Update the details below to match your personal information
+ */
+
+enum DetailType {
+	title = 'title',
+	subtitle = 'subtitle',
+	description = 'description',
+}
+
+const details: {
+	type: DetailType;
+	content: string;
+}[] = [
+	{
+		type: DetailType.title,
+		content: `Hola, This is Sparsh`,
+	},
+	{
+		type: DetailType.subtitle,
+		content: 'Undregrad Computer Science Student | Aspiring Software Developer | GEN AI Developer',
+	},
+	{
+		type: DetailType.description,
+		content: 'Navigating Tech Waves with Entrepreneurial Flair.🌊🚀💡🌟🌐',
+	},
+];
+
+
+const getClass = (type: DetailType) => {
+	switch (type) {
+		case DetailType.title:
+			return 'font-sora text-4xl font-bold tracking-wide md:text-5xl animate-fade-up duration-300 text-white';
+		case DetailType.subtitle:
+			return 'text-5xl font-light tracking-wide md:text-sm duration-300 text-white';
+		case DetailType.description:
+			return 'text-2xl font-light tracking-wide md:text-base animate-fade-in duration-300 text-white';
+	}
+};
+---
+
+<div
+	class="grid grid-cols-1 place-content-center place-items-center gap-5"
+>
+	{details.map((detail) => <p class={getClass(detail.type)}>{detail.content}</p>)}
+</div>
